@@ -1,5 +1,7 @@
 #  Coffee Themed Merchandise Store
 
+<img width="537" height="464" alt="image" src="https://github.com/user-attachments/assets/78594f84-b6b5-4557-92f8-964af862876d" />
+
 Веб-приложение для продажи товаров кофейной тематики с системой авторизации и разделением ролей пользователей.
 
 ##  О проекте
