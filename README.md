@@ -106,6 +106,11 @@
 
 ![Price Update](https://github.com/user-attachments/assets/a4d5c790-0e48-4c92-91e7-f14ad5fee617)
 
+Отчёт по товарам 
+- Отчёты по товарам
+- Отчёты по продажам
+- Аналитика остатков
+
 ###  Функции покупателя
 
 Каталог товаров
@@ -115,10 +120,20 @@
 
 ![Product Catalog](https://github.com/user-attachments/assets/97ea5ba6-2132-4c5f-b3f0-f3f0542a9807)
 
+## Запуск
+1. docker-compose up --build
+2. переходим http://localhost:8501
+3. Создадим обычного пользователя
+- пароль 12345678
+- логин ilya1
+4. Для захода в роли админа надо поменять роль у пользователя на админа
+- docker exec -it data_base_cp-db-1 psql -U cofe -d cofe
+- update users set role = 'admin' where username = 'ilya1';
+
 ##  Технологии
 
 - Backend: Python, Streamlit
-- Database: PostgreSQL/MySQL
+- Database: PostgreSQL
 - Authentication: Custom auth system
 - Frontend: Streamlit components
 - Security: Password hashing, role-based access

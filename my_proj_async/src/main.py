@@ -8,6 +8,8 @@ from pages.update_prices import update_price
 from repositories.update_prices_products import create_trigger_and_function
 import asyncio
 import pandas as pd
+from pages.reports import show_reports_page
+
 # Обертка для вызова асинхронных функций в синхронном контексте Streamlit
 def run_async_function(async_func, *args, **kwargs):
     loop = asyncio.new_event_loop()
@@ -63,6 +65,7 @@ async def main_async():
                     if exit_from_page:
                         st.session_state.pop("auth_token", None)
                         st.success("Вы вышли из системы")
+
             elif await check_role("admin"):
                 page = st.sidebar.radio(
                     "Перейти к странице",
@@ -72,6 +75,7 @@ async def main_async():
                         "Добавить пользователя или админа",
                         "Добавить товар, категорию, поставщика",
                         "Обновить цену",
+                        "Отчеты",
                         "Выйти",
                     ],
                 )
@@ -85,6 +89,8 @@ async def main_async():
                     await add_products_admin()
                 elif page == "Обновить цену":
                     await update_price()
+                elif page == "Отчеты":
+                    await show_reports_page()
                 elif page == "Выйти":
                     exit_from_page = st.button("Выйти")
                     if exit_from_page:

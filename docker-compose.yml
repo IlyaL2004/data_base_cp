@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${DB_NAME:-cofe}
+      POSTGRES_USER: ${DB_USER:-cofe}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-cofe}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./my_proj_async/migration:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-cofe}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: ./my_proj_async/src
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      DB_NAME: ${DB_NAME:-cofe}
+      DB_USER: ${DB_USER:-cofe}
+      DB_PASSWORD: ${DB_PASSWORD:-cofe}
+      DB_HOST: db
+      DB_PORT: 5432
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./my_proj_async/src:/app
+
+volumes:
+  postgres_data:
