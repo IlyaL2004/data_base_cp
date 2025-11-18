@@ -130,6 +130,14 @@
 - docker exec -it data_base_cp-db-1 psql -U cofe -d cofe
 - update users set role = 'admin' where username = 'ilya1';
 
+<img width="795" height="818" alt="image" src="https://github.com/user-attachments/assets/ad041e30-7a49-471a-8692-c1b486253c07" />
+
+<img width="768" height="391" alt="image" src="https://github.com/user-attachments/assets/af70ef8e-7c4e-4199-9677-5ed5036187d8" />
+
+<img width="773" height="962" alt="image" src="https://github.com/user-attachments/assets/a7eab792-b43d-4d2a-91bd-f68129f030c0" />
+
+
+
 ##  Технологии
 
 - Backend: Python, Streamlit
